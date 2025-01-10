@@ -1,16 +1,22 @@
 import {AiFillDelete, AiFillEdit} from 'react-icons/ai'
-import {Action, Todo} from '../model'
+import {Todo} from '../model'
 import {MdDone} from 'react-icons/md'
 import {useEffect, useRef, useState} from 'react'
 import {Draggable} from 'react-beautiful-dnd'
+import {Action} from '../TodoContext'
 
 interface SingleTodoProps {
     todo: Todo
-    // todos: Todo[]
     index: number
     setTodos: React.Dispatch<Action>
+    time: Time
 }
 
+export enum Time {
+    Today = 'Today',
+    Tomorrow = 'Tomorrow',
+    NextWeek = 'NextWeek',
+}
 const SingleTodo: React.FC<SingleTodoProps> = ({todo, setTodos, index}) => {
     //
     const [isEdit, setIsEdit] = useState<boolean>(false)

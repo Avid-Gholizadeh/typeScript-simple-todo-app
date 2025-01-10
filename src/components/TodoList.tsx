@@ -1,7 +1,8 @@
 import {Dispatch} from 'react'
-import {Action, Todo} from '../model'
-import SingleTodo from './SingleTodo'
+import {Todo} from '../model'
+import SingleTodo, {Time} from './SingleTodo'
 import {Droppable} from 'react-beautiful-dnd'
+import {Action} from '../TodoContext'
 
 interface PropTypes {
     todos: Todo[]
@@ -28,6 +29,7 @@ export const TodoList: React.FC<PropTypes> = ({todos, setTodos}) => {
                                     todo={todo}
                                     // todos={todos}
                                     setTodos={setTodos}
+                                    time={Time.Today}
                                 />
                             ))}
                         {provided.placeholder}
@@ -52,6 +54,7 @@ export const TodoList: React.FC<PropTypes> = ({todos, setTodos}) => {
                                     todo={todo}
                                     // todos={todos}
                                     setTodos={setTodos}
+                                    time={Time.Tomorrow}
                                 />
                             ))}
                         {provided.placeholder}
