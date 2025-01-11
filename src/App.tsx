@@ -44,8 +44,9 @@ const App: React.FC = () => {
 
 export default App
 
-let hobbies: string[]
+let hobbies: string[] // or we can use Array<string>
 let role: [string, number] = ['ali', 4]
+let user: object = {name: 'ali', age: 4} // object type is not a good practice, we should use interface instead.
 
 // type Person = {name: string; age?: number}
 interface Person {
@@ -63,3 +64,26 @@ let personName: unknown // when we do not want to asign a type.
 
 // ===============================================================
 let values: number[] = [1, 2, 3, 4, 5]
+// ===============================================================
+// function types
+let someFn: (a: number, b: number) => number // declaring a function called somefn that has its own type.
+
+function add(a: number, b: number): number {
+    return a + b
+} // we typicaly do not consider return type in typescript, because it can be inferred by the typescript.
+
+function MdCalculate(a: number, b: number, calcFn: (a: number, b: number) => number) {
+    calcFn(a, b)
+}
+
+interface example {
+    a: string
+    b: number
+}
+interface example {
+    c: boolean
+} // this code adds a new property to the pre-defined interface.
+
+// ===============================================================
+// literal types
+let name: 'admin' | 'user' | 'moderator' // this is a literal type, which means the name can only be one of the three values.

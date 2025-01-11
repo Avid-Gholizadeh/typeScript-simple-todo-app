@@ -64,9 +64,3 @@ export const TodoList: React.FC<PropTypes> = ({todos, setTodos}) => {
         </div>
     )
 }
-
-/*  <div className="todos">
-            {todos.map(todo => (
-                
-            ))}
-        </div> */
