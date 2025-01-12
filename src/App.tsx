@@ -75,7 +75,7 @@ function add(a: number, b: number): number {
 function MdCalculate(a: number, b: number, calcFn: (a: number, b: number) => number) {
     calcFn(a, b)
 }
-
+// ===============================================================
 interface example {
     a: string
     b: number
@@ -86,4 +86,45 @@ interface example {
 
 // ===============================================================
 // literal types
-let name: 'admin' | 'user' | 'moderator' // this is a literal type, which means the name can only be one of the three values.
+
+type name = 'ali' | 'taghi' | 'reza' // this is a literal type, which means the name can only be one of the three values.
+function performAction(action: string | number, name: name) {
+    if (name === 'reza' && typeof action === 'number') {
+        // do something.
+    }
+    // it is common pattern to have extra if cheaks when we use union types or literal types
+}
+// ===============================================================
+// merging types
+type user = {username: string}
+type admin = {adminId: number}
+type userAdmin = user & admin // this is called merging types, which means the userAdmin type has both properties of user and admin.
+
+interface user1 {
+    userName: string
+}
+interface admin1 {
+    adminId: number
+}
+interface userAdmin1 extends user1, admin1 {} // this is another way of merging types using interfaces.
+// ===============================================================
+// Generic types : They are types that work together with other types. It means that generic types need extra information
+// (type) to be provided when they are used.
+
+type DataStorage<T> = {
+    storage: T[]
+    add: (data: T) => void
+} // so the DataStorage is a generic type that can store any type of data.
+
+const userStorage: DataStorage<user> = {
+    storage: [],
+    add: user => {
+        // do something
+    },
+}
+
+function merge<T, U>(a: T, b: U) {
+    return {...a, ...b}
+}
+const newUser = merge({name: 'ali'}, {age: 4}) // typescript can infer the types of T and U from the arguments.
+// ===============================================================
